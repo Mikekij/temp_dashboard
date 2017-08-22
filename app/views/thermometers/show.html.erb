@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @thermometer.name %>
+</p>
+
+<p>
+  <strong>Serial:</strong>
+  <%= @thermometer.serial %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @thermometer.location %>
+</p>
+
+<%= link_to 'Edit', edit_thermometer_path(@thermometer) %> |
+<%= link_to 'Back', thermometers_path %>

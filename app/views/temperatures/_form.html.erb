@@ -1,0 +1,27 @@
+<%= form_with(model: temperature, local: true) do |form| %>
+  <% if temperature.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(temperature.errors.count, "error") %> prohibited this temperature from being saved:</h2>
+
+      <ul>
+      <% temperature.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :thermometer_id %>
+    <%= form.number_field :thermometer_id, id: :temperature_thermometer_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :temperature_c %>
+    <%= form.text_field :temperature_c, id: :temperature_temperature_c %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
