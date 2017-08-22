@@ -7,4 +7,6 @@ Rails.application.routes.draw do
     resources :temperatures, only: [:index, :create, :show, :update]
   end
 
+  root to: "temperatures#index"
+
 end
