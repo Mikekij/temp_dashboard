@@ -19,7 +19,7 @@
         <td><%= temperature.thermometer.name %></td>
         <td><%= number_with_precision(temperature.temperature_c, :precision => 1) %></td>
         <td><%= number_with_precision(temperature.temperature_f, :precision => 1) %></td>
-        <td><%= temperature.created_at %></td>
+        <td><%= temperature.created_at.in_time_zone("Pacific Time (US & Canada)").strftime("%I:%M %h %d, %Y") %></td>
         <td><%= link_to 'Destroy', temperature, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
