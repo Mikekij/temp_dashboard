@@ -8,6 +8,17 @@ class TemperaturesController < ApplicationController
     @outside_temps = Thermometer.where(:name => 'outside').first.temperatures.order('created_at DESC')
     @floor_temps = Thermometer.where(:name => 'floor').first.temperatures.order('created_at DESC')
 
+    if !params["days"].nil?
+      @outside_temps = Thermometer.where(:name => 'outside').first.temperatures.where("created_at > ?", DateTime.now - params["days"].to_i.days).order('created_at DESC')
+      @floor_temps = Thermometer.where(:name => 'floor').first.temperatures.where("created_at > ?", DateTime.now - params["days"].to_i.days).order('created_at DESC')
+    end
+
+    outdoor_array = @outside_temps.map{|x| x.temperature_f}
+    @outdoor_mean = outdoor_array.inject{ |sum, el| sum + el }.to_f / outdoor_array.size
+
+    floor_array = @floor_temps.map{|x| x.temperature_f}
+    @floor_mean = floor_array.inject{ |sum, el| sum + el }.to_f / floor_array.size
+
   end
 
   # GET /temperatures/1
