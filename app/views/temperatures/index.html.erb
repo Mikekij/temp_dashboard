@@ -1,6 +1,15 @@
+
+
 <p id="notice"><%= notice %></p>
 
 <h1>Temperatures</h1>
+
+<div class=row>
+  <div class="col-md-6">
+    <div id="graph-container"></div>
+  </div><!-- /col-md-6 -->
+
+</div><!-- /row -->
 
 <div class=row>
   <div class="col-md-6">
@@ -51,3 +60,42 @@
 <br>
 
 <%= link_to 'New Temperature', new_temperature_path %>
+
+<script>
+Highcharts.chart('graph-container', {
+    chart: {
+        type: 'line'
+    },
+    title: {
+        text: 'Floor Temperature Analysis'
+    },
+    subtitle: {
+        text: 'Source: WorldClimate.com'
+    },
+    xAxis: {
+    //    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+          type: 'datetime'
+    },
+    yAxis: {
+        title: {
+            text: 'Temperature (°F)'
+        }
+    },
+    plotOptions: {
+        line: {
+            dataLabels: {
+                enabled: false
+            },
+            enableMouseTracking: false
+        }
+    },
+    series: [{
+        name: 'Outside',
+      //  data: [7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+        data: <%= @outside_temps.map {|x| [x.created_at.to_i * 1000,x.temperature_f]}.inspect %>
+    }, {
+        name: 'Floor',
+        data: <%= @floor_temps.map {|x| [x.created_at.to_i * 1000,x.temperature_f]}.inspect %>
+    }]
+});
+</script>
