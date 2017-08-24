@@ -5,7 +5,9 @@ class TemperaturesController < ApplicationController
   # GET /temperatures
   # GET /temperatures.json
   def index
-    @temperatures = Temperature.all.order('created_at DESC')
+    @outside_temps = Thermometer.where(:name => 'outside').first.temperatures.order('created_at DESC')
+    @floor_temps = Thermometer.where(:name => 'floor').first.temperatures.order('created_at DESC')
+
   end
 
   # GET /temperatures/1
