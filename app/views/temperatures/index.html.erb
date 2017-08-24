@@ -5,22 +5,15 @@
 <h1>Temperatures</h1>
 
 <div class=row>
-  <div class="col-md-6">
+  <div class="col-md-12">
     <div id="graph-container"></div>
   </div><!-- /col-md-6 -->
 
 </div><!-- /row -->
 <div class=row>
-  <div class="col-md-6">
-    <%= link_to "All Days", temperatures_path()  %>
-    <%= link_to "1 Day", temperatures_path(:days => 1)  %> </div>
-    <%= link_to "2 Days", temperatures_path(:days => 2)  %> </div>
-    <%= link_to "5 Days", temperatures_path(:days => 5)  %> </div>
-    <%= link_to "7 Days", temperatures_path(:days => 7)  %> </div>
-    <%= link_to "30 Days", temperatures_path(:days => 30)  %> </div>
-    <%= link_to "60 Days", temperatures_path(:days => 60)  %> </div>
-
-  </div><!-- /col-md-6 -->
+  <div class="col-md-12">
+    <%= link_to "All Days", temperatures_path()  %>| <%= link_to "1 Day", temperatures_path(:days => 1)  %> | <%= link_to "2 Days", temperatures_path(:days => 2)  %> | <%= link_to "5 Days", temperatures_path(:days => 5)  %> | <%= link_to "7 Days", temperatures_path(:days => 7)  %> | <%= link_to "30 Days", temperatures_path(:days => 30)  %> | <%= link_to "60 Days", temperatures_path(:days => 60)  %>
+  </div><!-- /col-md-12 -->
 
 </div><!-- /row -->
 
