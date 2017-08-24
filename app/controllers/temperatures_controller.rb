@@ -27,7 +27,11 @@ class TemperaturesController < ApplicationController
   # POST /temperatures
   # POST /temperatures.json
   def create
-    @temperature = Temperature.new(temperature_params)
+  #  @temperature = Temperature.new(temperature_params)
+     @temperature = Temperature.new
+     @temperature.temperature_c = temperature_params[:temperature_c]
+     @temperature.thermometer_id = Thermometer.where(:name => temperature_params[:name]).first.id
+
 
     respond_to do |format|
       if @temperature.save
@@ -72,6 +76,6 @@ class TemperaturesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def temperature_params
-      params.require(:temperature).permit(:thermometer_id, :temperature_c)
+      params.require(:temperature).permit(:thermometer_id, :temperature_c, :name)
     end
 end
